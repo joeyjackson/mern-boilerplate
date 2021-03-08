@@ -1,0 +1,20 @@
+.App {
+  text-align: center;
+  background-color: #282c34;
+}
+
+.App-body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.App-body pre {
+  background-color: #14161a;
+  text-align: left;
+  padding: 10px;
+  min-width: 300px;
+}

@@ -1,0 +1,46 @@
+{
+  "name": "mern-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-frontend": "cd react-app && yarn run build",
+    "build-backend": "tsc",
+    "build": "yarn run build-frontend && yarn run build-backend",
+    "mock": "echo TODO: mock backend && yarn run build-backend && cross-env NODE_ENV=development node backend/dist/app.js",
+    "dev:frontend": "concurrently \"yarn run mock\" \"cd react-app && yarn run start\"",
+    "dev:backend": "yarn run build-frontend && concurrently \"tsc -w\" \"nodemon backend/dist/app.js\"",
+    "serve": "pm2 start backend/dist/app.js --name mern-app",
+    "stop": "pm2 stop mern-app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joeyjackson/mern-boilerplate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joeyjackson/mern-boilerplate/issues"
+  },
+  "homepage": "https://github.com/joeyjackson/mern-boilerplate#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.19",
+    "pm2": "^4.5.5"
+  },
+  "devDependencies": {
+    "@tsconfig/node12": "^1.0.7",
+    "@types/cors": "^2.8.10",
+    "@types/express": "^4.17.11",
+    "@types/node": "^14.14.32",
+    "concurrently": "^6.0.0",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.7",
+    "tsc": "^1.20150623.0",
+    "typescript": "^4.2.3"
+  }
+}
