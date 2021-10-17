@@ -6,11 +6,14 @@ import cors from "cors";
 import { connectToMongo } from "./mongodb";
 import { applySampleRoutes } from "./routes/sample-routes";
 import { sampleErrorHandlerMiddleware, sampleLogRequestTimeMiddleware } from "./middleware/sample-middleware";
+import { exit } from "process";
 
 dotenv.config({ path: path.resolve(__dirname, "..", "..", ".env") });
 
-// Uncomment if using mongodb
-// connectToMongo();
+connectToMongo().catch(err => {
+  console.error("Could not establish connection with MongoDB:", err);
+  exit(1);
+});
 
 const INDEX_HTML_DIR = path.join(__dirname, "..", "..", "react-app", "build");
 const PORT = (process.env.PORT || "3001") as unknown as number;

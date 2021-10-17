@@ -11,11 +11,11 @@ import {
 
 export const applySampleRoutes = (app: Express, baseApiPath: string = "/api") => {
   app.route(baseApiPath + "/samples")
-    .get(sampleGet)
+    .get(sampleList)
     .post(sampleCreate)
   
   app.route(baseApiPath + "/samples/:id")
-    .get(sampleList)
+    .get(sampleGet)
     .put(sampleEdit)
     .delete(sampleDelete)
 

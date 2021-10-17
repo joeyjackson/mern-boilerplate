@@ -7,12 +7,15 @@
     "build-frontend": "cd react-app && yarn run build",
     "build-backend": "tsc",
     "build": "yarn run build-frontend && yarn run build-backend",
-    "mock": "echo TODO: mock backend && yarn run build-backend && cross-env NODE_ENV=development node backend/dist/app.js",
+    "mock": "yarn run dev:mongodb && yarn run build-backend && cross-env NODE_ENV=development MONGO_AUTH_SOURCE=test MONGO_USER=testUser MONGO_PASSWORD=pwd node backend/dist/app.js",
     "dev:frontend": "concurrently \"yarn run mock\" \"cd react-app && yarn run start\"",
-    "dev:backend": "yarn run build-frontend && concurrently \"tsc -w\" \"nodemon backend/dist/app.js\"",
+    "dev:backend": "yarn run build-frontend && yarn run dev:mongodb && concurrently \"tsc -w\" \"nodemon backend/dist/app.js\"",
+    "dev:mongodb": "docker run -d --name dev_mongodb --rm -p 27017:27017 -e MONGO_INITDB_DATABASE=admin -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=rootpwd -e MONGO_AUTH_SOURCE=test -e MONGO_USER=testUser -e MONGO_PASSWORD=pwd joeyjackson/mern-boilerplate-mongodb",
     "serve": "pm2 start backend/dist/app.js --name mern-app",
     "stop": "pm2 stop mern-app",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docker-build": "docker build -t joeyjackson/mern-boilerplate . && docker build -t joeyjackson/mern-boilerplate-mongodb ./mongo/",
+    "docker-build-nc": "docker build --no-cache -t joeyjackson/mern-boilerplate . && docker build --no-cache -t joeyjackson/mern-boilerplate-mongodb ./mongo/"
   },
   "repository": {
     "type": "git",

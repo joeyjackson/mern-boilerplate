@@ -1,11 +1,14 @@
-import mongoose, { Schema, Model, Document } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
 export interface ISample extends Document {
-  field: string;
+  timestamp_ms: number;
+  value: number;
 }
 
 export const SampleSchema: Schema = new mongoose.Schema({
-  field: { type: String, required: true }
+  timestamp_ms: { type: Number, required: true },
+  value: { type: Number, required: true },
+
 });
 
-export const Sample: Model<ISample> = mongoose.model("Sample", SampleSchema);
+export const Sample = mongoose.model<ISample>("Sample", SampleSchema);

@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+  app:
+    image: joeyjackson/mern-boilerplate
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-3001}:3000"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3000
+      MONGO_HOST: mongo
+      MONGO_PORT: 27017
+      MONGO_AUTH_SOURCE: ${MONGO_AUTH_SOURCE:-test}
+      MONGO_USER: ${MONGO_USER:-testUser}
+      MONGO_PASSWORD: ${MONGO_PASSWORD}
+    depends_on:
+      - mongo
+  mongo:
+    image: joeyjackson/mern-boilerplate-mongodb
+    restart: unless-stopped
+    environment: 
+      MONGO_INITDB_DATABASE: admin
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_AUTH_SOURCE: ${MONGO_AUTH_SOURCE:-test}
+      MONGO_USER: ${MONGO_USER:-testUser}
+      MONGO_PASSWORD: ${MONGO_PASSWORD}
+    volumes:
+      - mongodb-data:/data/db
+      - mongodb-configdb:/data/configdb
+
+volumes:
+  mongodb-data:
+  mongodb-configdb:

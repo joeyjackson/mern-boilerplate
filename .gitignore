@@ -12,6 +12,7 @@
 /react-app/build
 /backend/dist
 /data
+.env
 
 # misc
 .DS_Store
