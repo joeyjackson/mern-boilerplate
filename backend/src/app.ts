@@ -16,8 +16,8 @@ connectToMongo().catch(err => {
 });
 
 const INDEX_HTML_DIR = path.join(__dirname, "..", "..", "react-app", "build");
-const PORT = (process.env.PORT || "3001") as unknown as number;
-const HOST = process.env.HOST || "localhost";
+const PORT = (process.env.PORT || 3001) as unknown as number;
+const HOST = process.env.HOST || "127.0.0.1";
 const NODE_ENV = process.env.NODE_ENV || "production";
 const app = express();
 

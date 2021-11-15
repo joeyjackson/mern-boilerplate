@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import './App.css';
 
-// For local testing:
-// export const BASE_URL = "http://127.0.0.1:3001";
-export const BASE_URL = undefined;
+export const REACT_APP_BACKEND_BASE_URL = process.env.REACT_APP_BACKEND_BASE_URL;
 
 type randomData = {
   data: {
@@ -14,7 +12,7 @@ type randomData = {
 };
 
 const getData = async () => {
-  const raw = await axios.get(`/api/data`, { baseURL: BASE_URL });
+  const raw = await axios.get(`/api/data`, { baseURL: REACT_APP_BACKEND_BASE_URL });
   return raw.data;
 }
 
@@ -24,12 +22,12 @@ interface sample {
 }
 
 const saveSample = async (sample: sample | undefined) => {
-  const raw = await axios.post(`/api/samples`, sample, { baseURL: BASE_URL });
+  const raw = await axios.post(`/api/samples`, sample, { baseURL: REACT_APP_BACKEND_BASE_URL });
   return raw.data;
 }
 
 const listSavedSamples = async () => {
-  const raw = await axios.get(`/api/samples`, { baseURL: BASE_URL });
+  const raw = await axios.get(`/api/samples`, { baseURL: REACT_APP_BACKEND_BASE_URL });
   return raw.data;
 }
 
