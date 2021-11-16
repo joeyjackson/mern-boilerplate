@@ -13,7 +13,8 @@
     "stop": "pm2 stop mern-app",
     "test": "echo \"Error: no test specified\" && exit 1",
     "docker-build": "docker build -t joeyjackson/mern-boilerplate . && docker build -t joeyjackson/mern-boilerplate-mongodb ./mongo/",
-    "docker-build-nc": "docker build --no-cache -t joeyjackson/mern-boilerplate . && docker build --no-cache -t joeyjackson/mern-boilerplate-mongodb ./mongo/"
+    "docker-build-nc": "docker build --no-cache -t joeyjackson/mern-boilerplate . && docker build --no-cache -t joeyjackson/mern-boilerplate-mongodb ./mongo/",
+    "docker-build-mongodb": "docker build --no-cache -t joeyjackson/mern-boilerplate-mongodb ./mongo/"
   },
   "repository": {
     "type": "git",
