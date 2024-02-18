@@ -7,6 +7,7 @@ Create a `.env` file based on the provided `.sample-env` file. Use this to provi
 ## Running the app
 ### Development
 ```
+npm run build-frontent
 npm run dev
 ```
 This will actually run 2 servers that watch for changes on the frontend and backend:
