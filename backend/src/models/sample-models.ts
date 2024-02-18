@@ -8,7 +8,6 @@ export interface ISample extends Document {
 export const SampleSchema: Schema = new mongoose.Schema({
   timestamp_ms: { type: Number, required: true },
   value: { type: Number, required: true },
-
 });
 
 export const Sample = mongoose.model<ISample>("Sample", SampleSchema);

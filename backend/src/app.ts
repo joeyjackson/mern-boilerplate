@@ -10,15 +10,11 @@ import { exit } from "process";
 
 dotenv.config({ path: path.resolve(__dirname, "..", "..", ".env") });
 
-connectToMongo().catch(err => {
-  console.error("Could not establish connection with MongoDB:", err);
-  exit(1);
-});
-
 const INDEX_HTML_DIR = path.join(__dirname, "..", "..", "react-app", "build");
 const PORT = (process.env.PORT || 3001) as unknown as number;
 const HOST = process.env.HOST || "127.0.0.1";
 const NODE_ENV = process.env.NODE_ENV || "production";
+
 const app = express();
 
 // Enable CORS for local development
@@ -38,14 +34,19 @@ app.use(sampleLogRequestTimeMiddleware);
 app.get("/", (req, res) => {
   res.sendFile(path.join(INDEX_HTML_DIR, "index.html"))
 });
+
 // Configure api routes
 applySampleRoutes(app);
 
-const server = http.createServer(app);
-
-server.listen(PORT, HOST, () => {
-  console.log(`Server started in mode "${NODE_ENV}" at http://${HOST}:${PORT}`);
-})
-
 // Apply error handling middleware
 app.use(sampleErrorHandlerMiddleware);
+
+connectToMongo().then(() => {
+  const server = http.createServer(app);
+  server.listen(PORT, HOST, () => {
+    console.log(`Server started in mode "${NODE_ENV}" at http://${HOST}:${PORT}`);
+  })
+}).catch(err => {
+  console.error("Could not establish connection with MongoDB:", err);
+  exit(1);
+});
