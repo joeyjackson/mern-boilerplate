@@ -18,28 +18,42 @@ export const sendError: RequestHandler = (req, res) => {
 
 
 // Sample MongoDB Mongoose REST controllers
-export const sampleCreate: RequestHandler = async (req, res, next) => {
-  const doc = await Sample.create(req.body);
-  res.status(200).json(doc); 
+export const sampleCreate: RequestHandler = (req, res, next) => {
+  Sample.create(req.body).then(doc => {
+    res.status(200).json(doc); 
+  }).catch((err: any) => {
+    next(err);
+  });
 }
 
-export const sampleList: RequestHandler = async (req, res, next) => {
-  const doc = await Sample.find({}, undefined).exec();
-  res.status(200).json(doc);
+export const sampleList: RequestHandler = (req, res, next) => {
+  Sample.find({}, undefined).exec().then(doc => {
+    res.status(200).json(doc); 
+  }).catch((err: any) => {
+    next(err);
+  });
 }
 
-export const sampleGet: RequestHandler = async (req, res, next) => {
-  const doc = await Sample.findById(req.params.id).exec();
-  res.status(200).json(doc);
+export const sampleGet: RequestHandler = (req, res, next) => {
+  Sample.findById(req.params.id).exec().then(doc => {
+    res.status(200).json(doc); 
+  }).catch((err: any) => {
+    next(err);
+  });
 }
 
-export const sampleEdit: RequestHandler = async (req, res, next) => {
-  const doc = await Sample.findByIdAndUpdate(req.params.id, req.body, { new: true }).exec();
-  res.status(200).json(doc);
+export const sampleEdit: RequestHandler = (req, res, next) => {
+  Sample.findByIdAndUpdate(req.params.id, req.body, { new: true }).exec().then(doc => {
+    res.status(200).json(doc); 
+  }).catch((err: any) => {
+    next(err);
+  });
 }
 
-export const sampleDelete: RequestHandler = async (req, res, next) => {
-  const doc = await Sample.findByIdAndDelete(req.params.id).exec();
-  res.status(200).json(doc);
+export const sampleDelete: RequestHandler = (req, res, next) => {
+  Sample.findByIdAndDelete(req.params.id).exec().then(doc => {
+    res.status(200).json(doc); 
+  }).catch((err: any) => {
+    next(err);
+  });
 }
-
