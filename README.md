@@ -8,7 +8,7 @@ cd react-app && npm install
 ```
 
 ## Configuration
-Create a `.env` file based on the provided `.sample-env` file. Use this to provide serving details, mongo configuration and credentials.
+Create a `.env` file based on the provided `.sample-env` file. Use this to provide serving details, mongo configuration, and credentials.
 
 ## Running the Application
 ### Development
