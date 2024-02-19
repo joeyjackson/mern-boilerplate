@@ -5,6 +5,7 @@ An example application demonstrating using the MERN stack (Mongodb, Express, Rea
 ```
 npm install
 cd react-app && npm install
+cd ..
 ```
 
 ## Configuration
@@ -14,6 +15,7 @@ Create a `.env` file based on the provided `.sample-env` file. Use this to provi
 ### Development
 ```
 npm run build
+npm run docker-build-mongodb
 npm run dev
 ```
 This will run 2 servers that watch for changes on the frontend and backend:
